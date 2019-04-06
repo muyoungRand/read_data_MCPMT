@@ -11,7 +11,7 @@ from read_data_func import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-
+import os
 class dataStore():
     def __init__(self,filename):
         self.filename = filename
