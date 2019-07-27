@@ -45,9 +45,11 @@
     <property name="title">
      <string>Fit</string>
     </property>
-    <addaction name="actionChoose_Functions"/>
     <addaction name="actionAdd_Functions"/>
     <addaction name="actionRecent_Function"/>
+    <addaction name="actionChoose_Functions"/>
+    <addaction name="actionSine"/>
+    <addaction name="actionFock_distribution"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuFit"/>
@@ -74,6 +76,16 @@
   <action name="actionRecent_Function">
    <property name="text">
     <string>Recently used</string>
+   </property>
+  </action>
+  <action name="actionSine">
+   <property name="text">
+    <string>Sine</string>
+   </property>
+  </action>
+  <action name="actionFock_distribution">
+   <property name="text">
+    <string>Fock distribution</string>
    </property>
   </action>
  </widget>

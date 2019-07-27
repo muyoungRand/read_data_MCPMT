@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'read_data.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.2
+# Created by: PyQt5 UI code generator 5.12
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -40,10 +41,16 @@ class Ui_MainWindow(object):
         self.actionAdd_Functions.setObjectName("actionAdd_Functions")
         self.actionRecent_Function = QtWidgets.QAction(MainWindow)
         self.actionRecent_Function.setObjectName("actionRecent_Function")
+        self.actionSine = QtWidgets.QAction(MainWindow)
+        self.actionSine.setObjectName("actionSine")
+        self.actionFock_distribution = QtWidgets.QAction(MainWindow)
+        self.actionFock_distribution.setObjectName("actionFock_distribution")
         self.menuFile.addAction(self.actionOpen)
-        self.menuFit.addAction(self.actionChoose_Functions)
         self.menuFit.addAction(self.actionAdd_Functions)
         self.menuFit.addAction(self.actionRecent_Function)
+        self.menuFit.addAction(self.actionChoose_Functions)
+        self.menuFit.addAction(self.actionSine)
+        self.menuFit.addAction(self.actionFock_distribution)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuFit.menuAction())
 
@@ -60,4 +67,7 @@ class Ui_MainWindow(object):
         self.actionChoose_Functions.setText(_translate("MainWindow", "Choose Functions"))
         self.actionAdd_Functions.setText(_translate("MainWindow", "Add Functions"))
         self.actionRecent_Function.setText(_translate("MainWindow", "Recently used"))
+        self.actionSine.setText(_translate("MainWindow", "Sine"))
+        self.actionFock_distribution.setText(_translate("MainWindow", "Fock distribution"))
+
 

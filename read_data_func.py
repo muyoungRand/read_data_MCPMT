@@ -3,6 +3,7 @@ from pylab import *
 import csv
 import ast
 import numpy as np
+
 def read_file2(filename):
     """
     Returns:
