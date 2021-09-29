@@ -129,6 +129,8 @@ class mainWindow(QMainWindow):
 
         self.openFitSineUi = FitSine()
         self.openFitFockUi = FitFock()
+        self.openFitFock_S_Ui = FitFock_S()
+        self.openFitSqzVac_Ui = FitSqzVac()
 
         self.qmc = Qt5MplCanvas()
         self.ui.verticalLayout.addWidget(self.qmc)
@@ -142,14 +144,24 @@ class mainWindow(QMainWindow):
         self.ui.actionChoose_Functions.triggered.connect(self.openFitWindow)
         self.ui.actionSine.triggered.connect(self.openFitSine)
         self.ui.actionFock_distribution.triggered.connect(self.openFitFock)
+        self.ui.actionFock_superposition.triggered.connect(self.openFitFock_S)
+        self.ui.actionSqz_Vac.triggered.connect(self.openFitSqzVac)
 
         self.openFileUi.ui.pushButton_PlotFiles.clicked.connect(self.plotFiles)
         self.openFileUi.ui.pushButton_AddFiles.clicked.connect(self.openAddFileDialog)
 
         self.openFitSineUi.fitSignal.connect(self.fitSignal_clicked)
         self.openFitSineUi.fitSignalDone.connect(self.fitSignal_done)
+
         self.openFitFockUi.fitSignal.connect(self.fitSignal_clicked)
         self.openFitFockUi.fitSignalDone.connect(self.fitSignal_done)
+
+        self.openFitFock_S_Ui.fitSignal.connect(self.fitSignal_clicked)
+        self.openFitFock_S_Ui.fitSignalDone.connect(self.fitSignal_done)
+
+        self.openFitSqzVac_Ui.fitSignal.connect(self.fitSignal_clicked)
+        self.openFitSqzVac_Ui.fitSignalDone.connect(self.fitSignal_done)
+
 
         self.show()
 
@@ -161,11 +173,18 @@ class mainWindow(QMainWindow):
         elif Fit_type=='FitFock':
             print('Choose '+ Fit_type +' as function to fit')
             self.openFitFockUi.fit(data_to_fit)
+        elif Fit_type=='FitFock_S':
+            print('Choose ' + Fit_type + ' as function to fit')
+            self.openFitFock_S_Ui.fit(data_to_fit)
+
+        elif Fit_type=='FitSqzVac':
+            print('Choose ' + Fit_type + ' as function to fit')
+            self.openFitSqzVac_Ui.fit(data_to_fit)
 
     @pyqtSlot(int)
     def fitSignal_done(self,i):
         data_to_fit = self.openFileUi.retrieveSelectedObject()[i]
-        x,y=data_to_fit.get_fitdata()
+        x, y = data_to_fit.get_fitdata()
         if self.qmc.thereisfit==True: #to check if there is fit plot and remove it
             self.qmc.axes.lines[-1].remove()
         else:
@@ -181,6 +200,13 @@ class mainWindow(QMainWindow):
         self.openFitFockUi.comboxBox_addItem(self.openFileUi.retrieveSelectedObject())
         self.openFitFockUi.exec_()
 
+    def openFitFock_S(self):
+        self.openFitFock_S_Ui.comboxBox_addItem(self.openFileUi.retrieveSelectedObject())
+        self.openFitFock_S_Ui.exec_()
+
+    def openFitSqzVac(self):
+        self.openFitSqzVac_Ui.comboxBox_addItem(self.openFileUi.retrieveSelectedObject())
+        self.openFitSqzVac_Ui.exec_()
 
     def openFitWindow(self):
         self.openFitUi.exec_()
@@ -241,7 +267,7 @@ class Qt5MplCanvas(FigureCanvas):
     def plot(self,x,y,file_path):
         #self.axes.legend()
         head, tail = os.path.split(file_path)
-        print(head,tail)
+        #print(head,tail)
         self.axes.plot(x,y,'-o',label=tail)
         self.axes.grid(b=True)
         self.axes.legend(loc='upper left')

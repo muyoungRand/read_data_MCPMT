@@ -32,7 +32,7 @@
      <x>0</x>
      <y>0</y>
      <width>971</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -50,6 +50,8 @@
     <addaction name="actionChoose_Functions"/>
     <addaction name="actionSine"/>
     <addaction name="actionFock_distribution"/>
+    <addaction name="actionFock_superposition"/>
+    <addaction name="actionSqz_Vac"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuFit"/>
@@ -86,6 +88,16 @@
   <action name="actionFock_distribution">
    <property name="text">
     <string>Fock distribution</string>
+   </property>
+  </action>
+  <action name="actionFock_superposition">
+   <property name="text">
+    <string>Fock_superposition</string>
+   </property>
+  </action>
+  <action name="actionSqz_Vac">
+   <property name="text">
+    <string>Sqz_Vac</string>
    </property>
   </action>
  </widget>

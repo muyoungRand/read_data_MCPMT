@@ -2,12 +2,11 @@
 
 # Form implementation generated from reading ui file 'read_data.ui'
 #
-# Created by: PyQt5 UI code generator 5.12
+# Created by: PyQt5 UI code generator 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -23,7 +22,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 971, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 971, 25))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -45,12 +44,18 @@ class Ui_MainWindow(object):
         self.actionSine.setObjectName("actionSine")
         self.actionFock_distribution = QtWidgets.QAction(MainWindow)
         self.actionFock_distribution.setObjectName("actionFock_distribution")
+        self.actionFock_superposition = QtWidgets.QAction(MainWindow)
+        self.actionFock_superposition.setObjectName("actionFock_superposition")
+        self.actionSqz_Vac = QtWidgets.QAction(MainWindow)
+        self.actionSqz_Vac.setObjectName("actionSqz_Vac")
         self.menuFile.addAction(self.actionOpen)
         self.menuFit.addAction(self.actionAdd_Functions)
         self.menuFit.addAction(self.actionRecent_Function)
         self.menuFit.addAction(self.actionChoose_Functions)
         self.menuFit.addAction(self.actionSine)
         self.menuFit.addAction(self.actionFock_distribution)
+        self.menuFit.addAction(self.actionFock_superposition)
+        self.menuFit.addAction(self.actionSqz_Vac)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuFit.menuAction())
 
@@ -69,5 +74,6 @@ class Ui_MainWindow(object):
         self.actionRecent_Function.setText(_translate("MainWindow", "Recently used"))
         self.actionSine.setText(_translate("MainWindow", "Sine"))
         self.actionFock_distribution.setText(_translate("MainWindow", "Fock distribution"))
-
+        self.actionFock_superposition.setText(_translate("MainWindow", "Fock_superposition"))
+        self.actionSqz_Vac.setText(_translate("MainWindow", "Sqz_Vac"))
 
