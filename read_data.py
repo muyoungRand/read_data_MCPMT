@@ -7,7 +7,6 @@ from fit_functions_ui import *
 from PyQt5.QtCore import *
 
 from read_data_func import *
-#from fit_functions import *
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -16,8 +15,9 @@ import os
 
 sys.path.insert(0, 'fit')
 from fit import *
+
 class dataStore():
-    def __init__(self,filename):
+    def __init__(self, filename):
         self.filename = filename
 
 
@@ -36,23 +36,27 @@ class dataPlot():
     '''
     def __init__(self, file_path):
         self.file_path = file_path
-        (self.x, self.y1, self.yerr1, self.y2, self.yerr2) = (None,None,None,None,None)
+
+        (self.x, self.y1, self.yerr1, self.y2, self.yerr2, self.y5, self.yerr5, self.y7, self.yerr7, self.y8, self. yerr9) = (None, None, None, None, None, None, None, None, None, None, None, None, None)
+
         self.ifProcessedData = False
         self.fitdata_x = None
         self.fitdata_y = None
 
-    def set_fitdata(self,x,y):
+    def set_fitdata(self, x, y):
         self.fitdata_x = x
         self.fitdata_y = y
 
     def get_fitdata(self):
-        return (self.fitdata_x,self.fitdata_y)
+        return (self.fitdata_x, self.fitdata_y)
 
     def getdata(self):
-        print('If processed data',self.ifProcessedData)
+        print('If processed data ', self.ifProcessedData)
+
         if self.ifProcessedData == False:
-            (self.x, self.y1, self.yerr1, self.y2, self.yerr2) = self.read_data()
-        return (self.x,self.y1,self.yerr1,self.y2,self.yerr2)
+            (self.x, self.y1, self.yerr1, self.y2, self.yerr2, self.y5, self.yerr5, self.y7, self.yerr7, self.y8, self. yerr9) = self.read_data()
+
+        return (self.x, self.y1, self.yerr1, self.y2, self.yerr2, self.y5, self.yerr5, self.y7, self.yerr7, self.y8, self. yerr9)
 
     def read_data(self):
         '''
@@ -62,9 +66,11 @@ class dataPlot():
         :return:
             (x,y1,err1,y2,err2):    five self-explained columns data
         '''
-        print('processing data of file ', str(self.file_path))
-        (x,y1,err1,y2,err2) = get_x_y(self.file_path)
-        return (x,y1,err1,y2,err2)
+        print('Processing File', str(self.file_path))
+
+        (x, y1, err1, y2, err2, y5, err5, y7, err7, y9, err9) = get_x_y(self.file_path)
+
+        return (x, y1, err1, y2, err2, y5, err5, y7, err7, y9, err9)
 
     def getFilePath(self):
         return self.file_path
