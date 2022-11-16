@@ -4,43 +4,30 @@ import csv
 import ast
 import numpy as np
 
-def read_file2(filename):
+def read_file_MCPMT(filename):
     """
     Returns:
     r -- raw data, shape of r (M,) where M is the number of scanning parameters.
     """
     with open(filename, 'rt') as file:
-        d = []
-        h = []
-        r = []
-        t = []
+        d = [] # Scanned parameter
+        h = [] # Histogram of counts -> Only works for SCPMT
+        r = [] # Raw data
+        t = [] # Time of experiment
         for row in csv.reader(file):
             data = []
             extra = []
             for item in row:
                 try:
-                    data.append(float(item))
+                    data.append(float(item)) # Scanned variable is a float
                 except:
-                    extra.append(ast.literal_eval(item))
+                    extra.append(ast.literal_eval(item)) # Other data are other python data types
             d.append(data)
             t.append(extra[0])
             h.append(extra[1])
             r.append(extra[2])
 
-    #return array(map(list, map(None, *d))), h, r, t
     return np.transpose(d),h,r,t
-
-def process_raw(raw):
-    out = []
-    for line in raw:
-        d = dict()
-        for key, val in line:
-            try:
-                d[key].append(val)
-            except KeyError:
-                d[key] = [val]
-        out.append(d)
-    return out
 
 
 # Get timestamps from the first element of the timestamp list
