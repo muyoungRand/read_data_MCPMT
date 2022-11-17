@@ -4,7 +4,7 @@ import csv
 import ast
 import numpy as np
 
-def read_file_MCPMT(filename):
+def read_file(filename):
     """
     Returns:
     r -- raw data, shape of r (M,) where M is the number of scanning parameters.
@@ -27,7 +27,7 @@ def read_file_MCPMT(filename):
             h.append(extra[1])
             r.append(extra[2])
 
-    return np.transpose(d),h,r,t
+    return np.transpose(d), h, r, t
 
 
 # Get timestamps from the first element of the timestamp list
@@ -40,16 +40,37 @@ def get_timestamps(timestamp):
 
 
 def get_nexp(pr):
+    """
+    Get number of experiments in experiment.
+    Does so by counting how many 'a'/SCPMT measurements there are in the raw data.
+
+    Also works for MCPMT, but better to leave as 'a' since SCPMT is always active regardless of MCPMT channel
+
+    Args:
+        pr: Raw data
+
+    Returns:
+        nexp (float): Number of experiments
+    """
     nexp = []
     for item in pr:
         try:
-            nexp.append(len(item['a']))
+            nexp.append(len(item['a'])) # Still works for MCPMT
         except KeyError:
             nexp.append(0)
     return nexp
 
 
 def process_raw(raw):
+    """
+    Sorts raw data in terms of counters 'a', 'G5', 'G7', etc. and the associated raw counts per experiment
+
+    Args:
+        raw: Raw Data
+
+    Returns:
+        out: Dictionary of counter + raw counts
+    """
     out = []
     for line in raw:
         d = dict()
@@ -62,39 +83,61 @@ def process_raw(raw):
     return out
 
 
-def get_x_y(filename):
-    data, hist, raw, timestamp = read_file2(filename)
-    timestamp = get_timestamps(timestamp)
+def get_x_y(filename, channels = [5, 7, 9]):
+    """
+    Find scanned variable (x) and thresholded results (y) from data file.
+    NOTE: Does NOT work for multiple scanned variables.
+
+    Args:
+        filename (string): Path to data file
+        channels (list, optional): MCPMT Channels to read from. Defaults to [5, 7, 9].
+
+    Returns:
+        (x, y, err_y): Scanned variable, thresholded result and calculated errors
+    """
+    data, hist, raw, timestamp = read_file(filename)
+
     raw = process_raw(raw)
     nexp = get_nexp(raw)
-    if len(data) == 20:  # We scan two parameters
-        x = data[0]  # x axis
-        y1 = data[4]  # counter 1
-        y2 = data[6]  # counter 3
-    else:  # we scan only one parameter
-        x = data[0]  # x axis,
-        y1 = data[3]  # counter 1
-        y2 = data[5]  # counter 3
-    # Counter 'a' mean is [12]
-    # Counter 'b' mean is [13]
-    # Counter 'c' mean is [14]
-    print('nexp ',nexp)
-    nexp=nexp[0]
+
+    x = data[0]  # x axis,
+
+    # Extract threshold data
+    y1 = data[3]  # SCPMT Counter 1
+    
+    y2_rev = []
+    for i in channels:
+        y2_rev.append(data[i + 27]) # MCPMT CH7 = Data 34
+
+    # Calculate Errors
+    nexp = nexp[0]
     err1 = sqrt(y1 * (1.0 - y1) / nexp)
-    err2 = sqrt(y2 * (1.0 - y2) / nexp)
+
+    err2_rev = []
+    for i in y2_rev:
+        errr = sqrt(i * (1.0 - i) / nexp)
+        err2_rev.append(errr)
+   
+    # Flip order.
+    # MainWin saves STOP point as first data point, so flip to make START the first data point
     x = x[::-1]
     y1 = y1[::-1]
     err1 = err1[::-1]
-    print('shape of x ', np.shape(x))
-    print('x ',x)
-    print('shape of y1 ',np.shape(y1))
-    print('y1 ', y1)
+    
+    y2 = []
+    err2 = []
+    for i in y2_rev:
+        y2.append(i[::-1])
+    for j in err2_rev:
+        err2.append(j[::-1])
+
     return (x, y1, err1, y2, err2)
 
 
 def get_x_y_raw(filename, channel='a', bins=50, maxbin=50, density=True):
     """
     Retrieve true counts from the processed raw data
+    NOTE: NOT fixed for MCPMT yet. Left for future work.
 
     Arguments:
     filename -- data file
@@ -112,7 +155,7 @@ def get_x_y_raw(filename, channel='a', bins=50, maxbin=50, density=True):
     hsum -- sum of histogram of y
     """
 
-    data, hist, raw, timestamp = read_file2(filename)
+    data, hist, raw, timestamp = read_file(filename)
     print(raw)
     print(data)
     raw = process_raw(raw)
