@@ -20,7 +20,6 @@ class dataStore():
     def __init__(self, filename):
         self.filename = filename
 
-
 class fitFunctions(QDialog):
     def __init__(self):
         super().__init__()
@@ -51,8 +50,6 @@ class dataPlot():
         return (self.fitdata_x, self.fitdata_y)
 
     def getdata(self):
-        print('If processed data ', self.ifProcessedData)
-
         if self.ifProcessedData == False:
             (self.x, self.y1, self.yerr1, self.y2, self.yerr2, self.y5, self.yerr5, self.y7, self.yerr7, self.y8, self. yerr9) = self.read_data()
 
