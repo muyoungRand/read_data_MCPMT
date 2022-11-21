@@ -4,17 +4,15 @@ import os
 from PyQt5.QtWidgets import QMainWindow,QApplication,QDialog, QApplication, QFileDialog
 from PyQt5.QtCore import pyqtSignal,pyqtSlot
 from PyQt5.QtCore import *
-from netgraph import EditableGraph
-
-from read_data_ui import *
-from open_file_ui import *
-from fit_functions_ui import *
-
-from read_data_func import *
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+
+from read_data_ui import *
+from open_file_ui import *
+from fit_functions_ui import *
+from read_data_func import *
 
 sys.path.insert(0, 'fit')
 from fit import *
@@ -41,8 +39,8 @@ class dataPlot():
 
         (self.x, self.y1, self.yerr1, self.y2, self.yerr2) = (None, None, None, None, None)
 
-        self.ifProcessedData = False
-        self.fitdata_x = None
+        self.ifProcessedData = False    # Check if data has been imported
+        self.fitdata_x = None   # Check if fits exist
         self.fitdata_y = None
 
     def set_fitdata(self, x, y):
@@ -53,6 +51,15 @@ class dataPlot():
         return (self.fitdata_x, self.fitdata_y)
 
     def getdata(self, channels = [5, 7, 9]):
+        """
+        Check if data has been imported; if not, import data.
+
+        Args:
+            channels (list, optional): Channels of MCPMT to read data from. Defaults to [5, 7, 9].
+
+        Returns:
+            (x, y, yerr1, y2, yerr2): y2, yerr2 are lists that contatin data from all MCPMT channels selected
+        """
         if self.ifProcessedData == False:
             (self.x, self.y1, self.yerr1, self.y2, self.yerr2) = self.read_data(channels)
 
@@ -64,7 +71,7 @@ class dataPlot():
         Replace get_x_y by another processing_data script.
 
         :return:
-            (x,y1,err1,y2,err2):    five self-explained columns data
+            (x,y1,err1,y2,err2):    y2, yerr2 are lists that contatin data from all MCPMT channels selected
         '''
         print('Processing File', str(self.file_path))
 
@@ -76,7 +83,7 @@ class dataPlot():
         return self.file_path
 
 class openFile(QDialog):
-    resized = QtCore.pyqtSignal()
+    resized = QtCore.pyqtSignal() # For GUI scaling with Window size
 
     def __init__(self):
         super().__init__()
@@ -93,7 +100,7 @@ class openFile(QDialog):
         #self.ui.listWidget_SelectedFiles.itemClicked.connect(self.addItemtoQueuePlot)
 
     def openFileDialog(self):
-        fname = QFileDialog.getOpenFileNames(self, 'Open file', '/home/')
+        fname = QFileDialog.getOpenFileNames(self, 'Open file', '/home/') # Change this directory for convenience if you wish.
         print(fname)
         for i,f in enumerate(fname[0]):
             item = QtWidgets.QListWidgetItem(f)
@@ -107,6 +114,7 @@ class openFile(QDialog):
         for item in items:
             self.ui.listWidget_SelectedFiles.takeItem(self.ui.listWidget_SelectedFiles.row(item))
         '''
+        Chihuan's comment:
         Not sure if the attached dataPlot objects is also removed to clean memory.
         Move on for now. Should be ok with a small set of loaded dataFiles
         '''
@@ -127,8 +135,8 @@ class openFile(QDialog):
 
     def resizeFunction(self):
         ref = self.ui.listWidget_SelectedFiles.height() # Ref point for buttons to refer to
-        self.ui.listWidget_SelectedFiles.setGeometry(QtCore.QRect(10, 10, self.width()-20, self.height()-150))
-        self.ui.horizontalLayoutWidget.setGeometry(10, ref+20, self.width()-20, 40)
+        self.ui.listWidget_SelectedFiles.setGeometry(QtCore.QRect(10, 10, self.width() - 20, self.height() - 150))
+        self.ui.horizontalLayoutWidget.setGeometry(10, ref + 20, self.width() - 20, 40)
 
 
 class mainWindow(QMainWindow):
