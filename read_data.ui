@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>971</width>
-    <height>695</height>
+    <width>957</width>
+    <height>725</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,12 +18,77 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>30</y>
       <width>931</width>
       <height>641</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+   <widget class="QPushButton" name="pushPlotReset">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>0</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Again :)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkSCPMT">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SCPMT</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH5">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH5</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH7">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH7</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH9">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH9</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -31,8 +96,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>971</width>
-     <height>25</height>
+     <width>957</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -98,6 +163,41 @@
   <action name="actionSqz_Vac">
    <property name="text">
     <string>Sqz_Vac</string>
+   </property>
+  </action>
+  <action name="actionSCPMT">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>SCPMT</string>
+   </property>
+  </action>
+  <action name="actionCH5">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH5</string>
+   </property>
+  </action>
+  <action name="actionCH7">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH7</string>
+   </property>
+  </action>
+  <action name="actionCH9">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH9</string>
    </property>
   </action>
  </widget>
