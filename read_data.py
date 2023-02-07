@@ -75,7 +75,7 @@ class dataPlot():
         '''
         print('Processing File', str(self.file_path))
 
-        (x, y, err1, y2, err2) = get_x_y(self.file_path, channels = channels)
+        (x, y, err1, y2, err2) = get_MSgate_conincidence(self.file_path, channels = channels)
 
         return (x, y, err1, y2, err2)
 
