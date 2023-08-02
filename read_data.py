@@ -50,7 +50,7 @@ class dataPlot():
     def get_fitdata(self):
         return (self.fitdata_x, self.fitdata_y)
 
-    def getdata(self, channels = [5, 7, 9]):
+    def getdata(self, channels = [5, 8, 11]):
         """
         Check if data has been imported; if not, import data.
 
@@ -75,7 +75,7 @@ class dataPlot():
         '''
         print('Processing File', str(self.file_path))
 
-        (x, y, err1, y2, err2) = get_MSgate_conincidence(self.file_path, channels = channels)
+        (x, y, err1, y2, err2) = get_x_y(self.file_path, channels = channels)
 
         return (x, y, err1, y2, err2)
 

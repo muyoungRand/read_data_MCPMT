@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://www.notion.so/
-HostUrl=https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d33e7e8a-bc7b-42b3-8c23-1a37b40ec2d3/freqscan_3ions_MSgate_symmetric_detuning_300us.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230207%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230207T163215Z&X-Amz-Expires=86400&X-Amz-Signature=a3d28a14bd51bd63b34bd85340bc1d74d72ffada196ad59ac948306354fc4379&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22freqscan%25203ions%2520MSgate%2520symmetric%2520detuning%2520300us.txt%22&x-id=GetObject
