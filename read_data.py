@@ -369,7 +369,7 @@ class Qt5MplCanvas(FigureCanvas):
         head, tail = os.path.split(file_path)
         #print(head,tail)
         self.axes.plot(x,y,'-o',label=tail + ', Chn' + str(chn))
-        self.axes.grid(b=True)
+        self.axes.grid() #b=True
         self.axes.legend(loc='upper left')
 
 if __name__=="__main__":
