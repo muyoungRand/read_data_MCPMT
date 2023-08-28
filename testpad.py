@@ -5,6 +5,7 @@ import glob
 import os
 # %%
 files = sorted(glob.glob("test_data/*.txt"), key=os.path.getmtime)
+print(files)
 
 for i in files:
     if 'MSgate' in i:

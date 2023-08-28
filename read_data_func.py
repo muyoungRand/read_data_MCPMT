@@ -134,7 +134,7 @@ def get_x_y(filename, channels = [5, 7, 9]):
     return (x, y1, err1, y2, err2)
 
 
-def get_x_y_raw(filename, channel='a', bins=50, maxbin=50, density=True):
+def get_x_y_raw(filename, channel = 'a', bins = 50, maxbin = 50, density = True):
     """
     Retrieve true counts from the processed raw data
     NOTE: NOT fixed for MCPMT yet. Left for future work.
@@ -156,13 +156,11 @@ def get_x_y_raw(filename, channel='a', bins=50, maxbin=50, density=True):
     """
 
     data, hist, raw, timestamp = read_file(filename)
-    print(raw)
-    print(data)
+    print(data[0])
     raw = process_raw(raw)
-    print(raw)
     nexp = get_nexp(raw)
-    x=[]
-    #x = data[0]
+
+    x = data[0]
 
     # x = x[::-1]
     y = []
