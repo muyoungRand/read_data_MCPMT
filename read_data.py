@@ -68,7 +68,7 @@ class dataPlot():
     def read_data(self, channels):
         '''
         Process raw data
-        Replace get_x_y by another processing_data script.
+        Replace get_x_y (located in read_data_func.py) by another processing_data script.
 
         :return:
             (x,y1,err1,y2,err2):    y2, yerr2 are lists that contatin data from all MCPMT channels selected
