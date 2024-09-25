@@ -12,7 +12,12 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 from read_data_ui import *
 from open_file_ui import *
 from fit_functions_ui import *
+from sequence_ui import *
+from settings_ui import *
+
 from read_data_func import *
+from sequence import *
+from settings import * 
 
 sys.path.insert(0, 'fit')
 from fit import *
@@ -150,6 +155,9 @@ class mainWindow(QMainWindow):
         self.openFitUi=fitFunctions()
 
         self.openFileUi = openFile()
+        
+        self.openSequence = sequenceWindow()
+        self.openSetting = settingWindow()
 
         self.openFitSineUi = FitSine()
         self.openFitFockUi = FitFock()
@@ -162,7 +170,6 @@ class mainWindow(QMainWindow):
                         NavigationToolbar(self.qmc, self))
 
         self.dataPlot_database=[]
-
 
         self.ui.actionOpen.triggered.connect(self.openFileDialog)
         self.ui.actionChoose_Functions.triggered.connect(self.openFitWindow)
@@ -186,7 +193,7 @@ class mainWindow(QMainWindow):
         self.openFitSqzVac_Ui.fitSignal.connect(self.fitSignal_clicked)
         self.openFitSqzVac_Ui.fitSignalDone.connect(self.fitSignal_done)
 
-        self.active_channels = []
+        self.active_channels = [0]
         self.ui.checkSCPMT.toggled.connect(self.pickChn0)
         self.ui.checkCH5.toggled.connect(self.pickChn5)
         self.ui.checkCH7.toggled.connect(self.pickChn7)
@@ -325,6 +332,13 @@ class mainWindow(QMainWindow):
         self.qmc.axes.clear()
         self.qmc.thereisfit = False
         for f in selectedItems:
+
+            self.openSequence.updateTable(str(f.file_path) + '.seq', 'delayscan' in f.file_path)
+            self.openSequence.show()
+            
+            self.openSetting.updateTree(str(f.file_path) + '.set', 'freqscan' in f.file_path)
+            self.openSetting.show()
+            
             x, y1, yerr1, y2, yerr2 = f.getdata()
             xfit, yfit = f.get_fitdata()
 

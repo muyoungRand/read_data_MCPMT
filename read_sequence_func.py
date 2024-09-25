@@ -1,4 +1,3 @@
-#%%
 import json
 
 def get_seq(filename):
@@ -93,4 +92,6 @@ def get_AWG_seq(input):
     output2.update(output)
 
     return output2
-# %%
+
+if __name__=="__main__":
+    main()

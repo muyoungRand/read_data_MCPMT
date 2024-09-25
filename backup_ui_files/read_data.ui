@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>957</width>
+    <height>725</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>931</width>
+      <height>641</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+   <widget class="QPushButton" name="pushPlotReset">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>0</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Again :)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkSCPMT">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SCPMT</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH5">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH5</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH7">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH7</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkCH9">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>0</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CH9</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>957</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+   </widget>
+   <widget class="QMenu" name="menuFit">
+    <property name="title">
+     <string>Fit</string>
+    </property>
+    <addaction name="actionAdd_Functions"/>
+    <addaction name="actionRecent_Function"/>
+    <addaction name="actionChoose_Functions"/>
+    <addaction name="actionSine"/>
+    <addaction name="actionFock_distribution"/>
+    <addaction name="actionFock_superposition"/>
+    <addaction name="actionSqz_Vac"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuFit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionChoose_Functions">
+   <property name="text">
+    <string>Choose Functions</string>
+   </property>
+  </action>
+  <action name="actionAdd_Functions">
+   <property name="text">
+    <string>Add Functions</string>
+   </property>
+  </action>
+  <action name="actionRecent_Function">
+   <property name="text">
+    <string>Recently used</string>
+   </property>
+  </action>
+  <action name="actionSine">
+   <property name="text">
+    <string>Sine</string>
+   </property>
+  </action>
+  <action name="actionFock_distribution">
+   <property name="text">
+    <string>Fock distribution</string>
+   </property>
+  </action>
+  <action name="actionFock_superposition">
+   <property name="text">
+    <string>Fock_superposition</string>
+   </property>
+  </action>
+  <action name="actionSqz_Vac">
+   <property name="text">
+    <string>Sqz_Vac</string>
+   </property>
+  </action>
+  <action name="actionSCPMT">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>SCPMT</string>
+   </property>
+  </action>
+  <action name="actionCH5">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH5</string>
+   </property>
+  </action>
+  <action name="actionCH7">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH7</string>
+   </property>
+  </action>
+  <action name="actionCH9">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>CH9</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
